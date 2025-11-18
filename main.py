@@ -24,7 +24,9 @@ from playwright.sync_api import sync_playwright
 from pydantic import BaseModel
 import requests
 # import datetime
- 
+from dotenv import load_dotenv
+
+load_dotenv()
  
 
 app = FastAPI()
@@ -33,23 +35,24 @@ app = FastAPI()
  
 
 sync_db_config = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': '',  # No password
-    'database': 'aimarketplace'
+    'host': os.getenv("DB_HOST"),
+    'user': os.getenv("DB_USER"),
+    'password': os.getenv("DB_PASSWORD"),  # No password
+    'database': os.getenv("DB_DATABASE")
 }
 
 async_db_config = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': '',  # No password
-    'db': 'aimarketplace',
+    'host': os.getenv("DB_HOST"),
+    'user': os.getenv("DB_USER"),
+    'password': os.getenv("DB_PASSWORD"),  # No password
+    'db': os.getenv("DB_DATABASE"),
     'port': 3306,
     'minsize': 1,
     'maxsize': 10,
     'autocommit': True
     # 'ssl': {},  # Uncomment if SSL is needed
 }
+
 
  
 
